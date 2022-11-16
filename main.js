@@ -1,12 +1,11 @@
 const mysql = require("mysql2");
 require('dotenv').config();
 
-
 const express = require('express')
 const app = express()
 
 app.get('/', function (req, res) {
-    res.send('Hello World')
+    res.send('hej')
 })
 
 app.listen(3000)
@@ -28,14 +27,20 @@ mysqlConnection.connect((err) => {
         console.log('connection Failed');
     }
 });
-mysqlConnection.query(
-"SELECT UserName, UserMail FROM cafe_database.users WHERE userID > 5;",
-    (err, results, fields) => {
-        if (!err) {
-            console.log(results);
-        } else {
-            console.log(err);
-            console.log('connection Failed');
-    }
-});
 
+
+
+app.get('/users', (req, res) => {
+    const query = "SELECT * FROM cafe_database.users WHERE userID > 5;";
+    mysqlConnection.query(
+        query,
+
+        (err, results, fields) => {
+            if (!err) {
+                res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
+})
