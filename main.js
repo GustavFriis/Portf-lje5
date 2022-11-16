@@ -1,6 +1,6 @@
 const mysql = require("mysql2");
 require('dotenv').config();
-port = 3000
+
 
 const express = require('express')
 const app = express()
@@ -28,7 +28,6 @@ mysqlConnection.connect((err) => {
         console.log('connection Failed');
     }
 });
-
 mysqlConnection.query(
 "SELECT UserName, UserMail FROM cafe_database.users WHERE userID > 5;",
     (err, results, fields) => {
@@ -39,3 +38,4 @@ mysqlConnection.query(
             console.log('connection Failed');
     }
 });
+
