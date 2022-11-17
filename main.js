@@ -3,12 +3,16 @@ require('dotenv').config();
 
 const express = require('express')
 const app = express()
+app.listen(3000)
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
 
 app.get('/', function (req, res) {
     res.send('hej')
 })
 
-app.listen(3000)
+
 
 const mysqlConnection = mysql.createConnection({
     host: process.env.HOST,
@@ -28,6 +32,7 @@ mysqlConnection.connect((err) => {
     }
 });
 
+// all users
 app.get('/users', (req, res) => {
     const query = "SELECT * FROM cafe_database.users;";
     mysqlConnection.query(
@@ -43,7 +48,7 @@ app.get('/users', (req, res) => {
     );
 })
 
-
+// all cafes
 app.get('/cafes', (req, res) => {
     const query = "SELECT * FROM cafe_database.cafes;";
     mysqlConnection.query(
@@ -59,6 +64,7 @@ app.get('/cafes', (req, res) => {
     );
 })
 
+// users by id
 app.get('/users/id/:UserID', (req, res) => {
     const query = "SELECT * FROM users WHERE UserID = ?;";
     const UserID = req.params.UserID;
@@ -74,6 +80,7 @@ app.get('/users/id/:UserID', (req, res) => {
     );
 })
 
+// cafés by id
 app.get('/cafes/id/:CafeID', (req, res) => {
     const query = "SELECT * FROM cafes WHERE CafeID = ?;";
     const CafeID = req.params.CafeID;
@@ -87,4 +94,13 @@ app.get('/cafes/id/:CafeID', (req, res) => {
             }
         }
     );
-})
+});
+
+app.post('/cafes/add', (req, res) => {
+    const CafeName = req.body.CafeName;
+    console.log(CafeName)
+
+    res.sendStatus(200)
+    }
+);
+
