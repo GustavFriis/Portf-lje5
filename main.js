@@ -28,13 +28,57 @@ mysqlConnection.connect((err) => {
     }
 });
 
-
-
 app.get('/users', (req, res) => {
-    const query = "SELECT * FROM cafe_database.users WHERE userID > 5;";
+    const query = "SELECT * FROM cafe_database.users;";
     mysqlConnection.query(
         query,
 
+        (err, results, fields) => {
+            if (!err) {
+                res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
+})
+
+
+app.get('/cafes', (req, res) => {
+    const query = "SELECT * FROM cafe_database.cafes;";
+    mysqlConnection.query(
+        query,
+
+        (err, results, fields) => {
+            if (!err) {
+                res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
+})
+
+app.get('/users/id/:UserID', (req, res) => {
+    const query = "SELECT * FROM users WHERE UserID = ?;";
+    const UserID = req.params.UserID;
+    mysqlConnection.query(
+        query, [UserID],
+        (err, results, fields) => {
+            if (!err) {
+                res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
+})
+
+app.get('/cafes/id/:CafeID', (req, res) => {
+    const query = "SELECT * FROM cafes WHERE CafeID = ?;";
+    const CafeID = req.params.CafeID;
+    mysqlConnection.query(
+        query, [CafeID],
         (err, results, fields) => {
             if (!err) {
                 res.json(results);
