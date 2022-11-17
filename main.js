@@ -13,7 +13,6 @@ app.get('/', function (req, res) {
 })
 
 
-
 const mysqlConnection = mysql.createConnection({
     host: process.env.HOST,
     port: process.env.PORT,
@@ -97,10 +96,24 @@ app.get('/cafes/id/:CafeID', (req, res) => {
 });
 
 app.post('/cafes/add', (req, res) => {
-    const CafeName = req.body.CafeName;
-    console.log(CafeName)
-
-    res.sendStatus(200)
+        const CafeName = req.body.CafeName;
+        console.log(CafeName)
+        res.sendStatus(200)
     }
 );
+//
+app.post('/users/add', (req, res) => {
+        const UserName = req.body.UserName;
+        const UserMail = req.body.UserMail
+        mysqlConnection.query('INSERT INTO users(UserName, UserMail) VALUES(?,?)', [UserName, UserMail],
+            (err, results, fields) => {
+                if (!err) {
+                    res.sendStatus(200);
+                } else {
+                    console.log(err);
+                }
+            }
+        )
 
+    }
+);
