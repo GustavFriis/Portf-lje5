@@ -3,12 +3,15 @@ require('dotenv').config();
 
 const express = require('express')
 const app = express()
+app.listen(3000)
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
 
 app.get('/', function (req, res) {
     res.send('hej')
 })
 
-app.listen(3000)
 
 const mysqlConnection = mysql.createConnection({
     host: process.env.HOST,
@@ -28,10 +31,9 @@ mysqlConnection.connect((err) => {
     }
 });
 
-
-
+// all users
 app.get('/users', (req, res) => {
-    const query = "SELECT * FROM cafe_database.users WHERE userID > 5;";
+    const query = "SELECT * FROM cafe_database.users;";
     mysqlConnection.query(
         query,
 
@@ -44,3 +46,91 @@ app.get('/users', (req, res) => {
         }
     );
 })
+
+// all cafes
+app.get('/cafes', (req, res) => {
+    const query = "SELECT * FROM cafe_database.cafes;";
+    mysqlConnection.query(
+        query,
+
+        (err, results, fields) => {
+            if (!err) {
+                res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
+})
+
+// users by id
+app.get('/users/id/:UserID', (req, res) => {
+    const query = "SELECT * FROM users WHERE UserID = ?;";
+    const UserID = req.params.UserID;
+    mysqlConnection.query(
+        query, [UserID],
+        (err, results, fields) => {
+            if (!err) {
+                res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
+})
+
+// cafés by id
+app.get('/cafes/id/:CafeID', (req, res) => {
+    const query = "SELECT * FROM cafes WHERE CafeID = ?;";
+    const CafeID = req.params.CafeID;
+    mysqlConnection.query(
+        query, [CafeID],
+        (err, results, fields) => {
+            if (!err) {
+                res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
+});
+
+
+//
+app.post('/users/add', (req, res) => {
+        const UserName = req.body.UserName;
+        const UserMail = req.body.UserMail
+        mysqlConnection.query('INSERT INTO users(UserName, UserMail) VALUES(?,?)', [UserName, UserMail],
+            (err, results, fields) => {
+                if (!err) {
+                    res.sendStatus(200);
+                } else {
+                    console.log(err);
+                }
+            }
+        )
+
+    }
+);
+
+
+app.post('/cafes/add', (req, res) => {
+        const PriceRange = req.body.PriceRange;
+        const Cozy = req.body.Cozy;
+        const PostCode = req.body.PostCode;
+        const Address = req.body.Address;
+        const Size = req.body.Size;
+        const Wifi = req.body.Wifi;
+        const CafeName = req.body.CafeName;
+        mysqlConnection.query('INSERT INTO Cafes(PriceRange, Cozy, PostCode, Address, Size, Wifi, CafeName) VALUES(?,?,?,?,?,?,?)', [PriceRange, Cozy, PostCode, Address, Size, Wifi, CafeName],
+            (err, results, fields) => {
+                if (!err) {
+                    res.sendStatus(200);
+                } else {
+                    console.log(err);
+                }
+            }
+        )
+
+    }
+);
