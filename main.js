@@ -15,11 +15,14 @@ app.get('/', function (req, res) {
 
 const mysqlConnection = mysql.createConnection({
     host: process.env.HOST,
-    port: process.env.PORT,
+    port: 3306,
     user: process.env.MYSQL_USER,
     database: process.env.DATABASE,
     password: process.env.PASSWORD,
     multipleStatements: true,
+    ssl: {
+        "rejectUnauthorized": this.host === "localhost"
+    }
 });
 
 mysqlConnection.connect((err) => {
@@ -33,7 +36,7 @@ mysqlConnection.connect((err) => {
 
 // all users
 app.get('/users', (req, res) => {
-    const query = "SELECT * FROM cafe_database.users;";
+    const query = "SELECT * FROM users;";
     mysqlConnection.query(
         query,
         (err, results, fields) => {
@@ -49,7 +52,7 @@ app.get('/users', (req, res) => {
 
 // all cafes
 app.get('/cafes', (req, res) => {
-    const query = "SELECT * FROM cafe_database.cafes;";
+    const query = "SELECT * FROM cafes;";
     mysqlConnection.query(
         query,
         (err, results, fields) => {
