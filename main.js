@@ -36,12 +36,12 @@ app.get('/users', (req, res) => {
     const query = "SELECT * FROM cafe_database.users;";
     mysqlConnection.query(
         query,
-
         (err, results, fields) => {
             if (!err) {
                 res.json(results);
             } else {
                 console.log(err);
+                res.sendStatus(500)
             }
         }
     );
@@ -52,12 +52,12 @@ app.get('/cafes', (req, res) => {
     const query = "SELECT * FROM cafe_database.cafes;";
     mysqlConnection.query(
         query,
-
         (err, results, fields) => {
             if (!err) {
                 res.json(results);
             } else {
                 console.log(err);
+                res.sendStatus(500)
             }
         }
     );
@@ -74,6 +74,7 @@ app.get('/users/id/:UserID', (req, res) => {
                 res.json(results);
             } else {
                 console.log(err);
+                res.sendStatus(500)
             }
         }
     );
@@ -90,22 +91,24 @@ app.get('/cafes/id/:CafeID', (req, res) => {
                 res.json(results);
             } else {
                 console.log(err);
+                res.sendStatus(500)
             }
         }
     );
 });
 
 
-//
+// create user
 app.post('/users/add', (req, res) => {
         const UserName = req.body.UserName;
-        const UserMail = req.body.UserMail
+        const UserMail = req.body.UserMail;
         mysqlConnection.query('INSERT INTO users(UserName, UserMail) VALUES(?,?)', [UserName, UserMail],
             (err, results, fields) => {
                 if (!err) {
                     res.sendStatus(200);
                 } else {
                     console.log(err);
+                    res.sendStatus(500)
                 }
             }
         )
@@ -113,7 +116,7 @@ app.post('/users/add', (req, res) => {
     }
 );
 
-
+// create cafe
 app.post('/cafes/add', (req, res) => {
         const PriceRange = req.body.PriceRange;
         const Cozy = req.body.Cozy;
@@ -128,6 +131,7 @@ app.post('/cafes/add', (req, res) => {
                     res.sendStatus(200);
                 } else {
                     console.log(err);
+                    res.sendStatus(500)
                 }
             }
         )
