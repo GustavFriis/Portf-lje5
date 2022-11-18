@@ -33,7 +33,7 @@ mysqlConnection.connect((err) => {
 
 // all users
 app.get('/users', (req, res) => {
-    const query = "SELECT * FROM cafe_database.users;";
+    const query = "SELECT * FROM users;";
     mysqlConnection.query(
         query,
         (err, results, fields) => {
@@ -49,7 +49,7 @@ app.get('/users', (req, res) => {
 
 // all cafes
 app.get('/cafes', (req, res) => {
-    const query = "SELECT * FROM cafe_database.cafes;";
+    const query = "SELECT * FROM cafes;";
     mysqlConnection.query(
         query,
         (err, results, fields) => {
