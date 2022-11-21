@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS favourites;
 CREATE TABLE cafes (
 CafeID INTEGER  NOT NULL AUTO_INCREMENT,
 PriceRange ENUM("low","medium","high"),
-Cozy ENUM("loW","medium","high"),
+Cozy ENUM("low","medium","high"),
 Postcode INTEGER(4),
 Address VARCHAR(50),
 Size INTEGER,
