@@ -38,13 +38,13 @@ INSERT INTO cafes(CafeID, PriceRange, Cozy, Postcode, Address, Size, Wifi, CafeN
 INSERT INTO cafes(CafeID, PriceRange, Cozy, Postcode, Address, Size, Wifi, CafeName) VALUES (9, "priceHigh", "cozyLow", "1630", "Vesterbrogade 3",130, TRUE, "Joe & The Juice");
 INSERT INTO cafes(CafeID, PriceRange, Cozy, Postcode, Address, Size, Wifi, CafeName) VALUES (10, "priceMedium", "cozyMedium", "2000", "Sløjfen 2",70, FALSE, "Vintage Coffee");
 
-Insert into cafe_database.users (UserName, UserMail) Values ('Sarah','sarahbp@gmail.com');
-Insert into cafe_database.users (UserName, UserMail) Values ('Morten','MortenA@gmail.com');
-Insert into cafe_database.users (UserName, UserMail) Values ('kaffeElsker27','DanielRS@gmail.com');
-Insert into cafe_database.users (UserName, UserMail) Values ('Mogens-Ole','gammelfisker@gmail.com');
-Insert into cafe_database.users (UserName, UserMail) Values ('KasparM','Kaspar467@gmail.com');
-Insert into cafe_database.users (UserName, UserMail) Values ('Gertud','gertrudhenriksen@outlook.com');
-Insert into cafe_database.users (UserName, UserMail) Values ('Leif','ericsson@outlook.com');
-Insert into cafe_database.users (UserName, UserMail) Values ('Lars','LLarsen@gmail.com');
-Insert into cafe_database.users (UserName, UserMail) Values ('Jørgen','Jandersen@gmail.com');
-Insert into cafe_database.users (UserName, UserMail) Values ('Chano','fysikmanden@gmail.com');
+Insert into users (UserName, UserMail) Values ('Sarah','sarahbp@gmail.com');
+Insert into users (UserName, UserMail) Values ('Morten','MortenA@gmail.com');
+Insert into users (UserName, UserMail) Values ('kaffeElsker27','DanielRS@gmail.com');
+Insert into users (UserName, UserMail) Values ('Mogens-Ole','gammelfisker@gmail.com');
+Insert into users (UserName, UserMail) Values ('KasparM','Kaspar467@gmail.com');
+Insert into users (UserName, UserMail) Values ('Gertud','gertrudhenriksen@outlook.com');
+Insert into users (UserName, UserMail) Values ('Leif','ericsson@outlook.com');
+Insert into users (UserName, UserMail) Values ('Lars','LLarsen@gmail.com');
+Insert into users (UserName, UserMail) Values ('Jørgen','Jandersen@gmail.com');
+Insert into users (UserName, UserMail) Values ('Chano','fysikmanden@gmail.com');
