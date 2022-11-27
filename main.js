@@ -12,7 +12,7 @@ app.use(
     })
 );
 /*const cors_url = process.env.NODE_ENV === "prod" ? URL_FOR_FRONTEND : "*";*/
-
+//
 app.get('/', function (req, res) {
     res.send('hej')
 })
