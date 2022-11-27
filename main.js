@@ -125,7 +125,7 @@ app.post('/users/add', (req, res) => {
 );
 
 // create cafe
-app.post('/cafes/add', (req, res) => {
+app.post('/cafes/', (req, res) => {
         const PriceRange = req.body.PriceRange;
         const Cozy = req.body.Cozy;
         const PostCode = req.body.PostCode;
