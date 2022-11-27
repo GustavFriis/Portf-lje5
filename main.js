@@ -8,10 +8,10 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(
     cors({
-        origin: cors_url
+        origin: "*"
     })
 );
-const cors_url = process.env.NODE_ENV === "prod" ? URL_FOR_FRONTEND : "*";
+/*const cors_url = process.env.NODE_ENV === "prod" ? URL_FOR_FRONTEND : "*";*/
 
 app.get('/', function (req, res) {
     res.send('hej')
