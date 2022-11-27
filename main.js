@@ -133,7 +133,7 @@ app.post('/cafes/', (req, res) => {
         const Size = req.body.Size;
         const Wifi = req.body.Wifi;
         const CafeName = req.body.CafeName;
-        mysqlConnection.query('INSERT INTO Cafes(CafeName, Cozy, PriceRange, Wifi, Postcode, Address, Size) VALUES(?,?,?,?,?,?,?)', [CafeName, Cozy, PriceRange, Wifi, Postcode, Address, Size],
+        mysqlConnection.query('INSERT INTO cafes(CafeName, Cozy, PriceRange, Wifi, Postcode, Address, Size) VALUES(?,?,?,?,?,?,?)', [CafeName, Cozy, PriceRange, Wifi, Postcode, Address, Size],
             (err, results, fields) => {
                 if (!err) {
                     res.sendStatus(200);
