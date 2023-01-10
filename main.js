@@ -146,3 +146,8 @@ app.post('/cafes/add', (req, res) => {
 
     }
 );
+
+// eksamen
+app.get('https://localhost:3000/eksamen', (req, res) => {
+    let numbers = [1,2,3,4,5]
+})
